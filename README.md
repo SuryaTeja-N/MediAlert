@@ -17,3 +17,18 @@ MediALERT web-based application is designed to simplify  this process, making it
 2. Create an account or log in.
 3. Add your medications and set dosage reminders.
 4. Receive low stock alerts and automated email notifications for missed doses.
+
+## Starting and Stopping
+1. To start the application, run `npm start` in the project directory.
+2. To stop the application, press `Ctrl+C` in the terminal where the application is running.
+
+## Setup Steps and Dependencies
+1. Ensure you have Node.js and npm installed on your machine.
+2. Install the required dependencies by running `npm install` in the project directory.
+3. Configure the database connection by updating the `config.js` file with your database credentials.
+
+## Deployment Instructions
+1. Build the application for production by running `npm run build`.
+2. Deploy the built files to your web server or hosting platform.
+3. Ensure the database is properly configured and accessible by the application.
+4. Start the application on the server by running `npm start` or using a process manager like PM2.

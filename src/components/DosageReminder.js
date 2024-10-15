@@ -4,6 +4,20 @@ const DosageReminder = ({ medication }) => {
     const [reminders, setReminders] = useState(medication.reminders);
 
     useEffect(() => {
+        fetchDosageData();
+    }, []);
+
+    const fetchDosageData = async () => {
+        try {
+            const response = await fetch(`/api/dosage/${medication.id}`);
+            const data = await response.json();
+            setReminders(data.reminders);
+        } catch (error) {
+            console.error('Error fetching dosage data:', error);
+        }
+    };
+
+    useEffect(() => {
         displayReminders();
     }, [reminders]);
 
