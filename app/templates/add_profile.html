@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Add Profile{% endblock %}
+
+{% block content %}
+<h2>Add New Profile</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    <div class="form-group">
+        <label for="relationship">Relationship</label>
+        <input type="text" id="relationship" name="relationship" required>
+    </div>
+    <button type="submit" class="btn">Add Profile</button>
+</form>
+{% endblock %}

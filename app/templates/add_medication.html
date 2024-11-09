@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Add Medication{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Add Medication</h1>
+    <form method="POST" class="medication-form">
+        <div class="form-group">
+            <label for="name">Medication Name</label>
+            <input type="text" id="name" name="name" class="form-control" required
+                   list="medicine-suggestions">
+            <datalist id="medicine-suggestions"></datalist>
+        </div>
+
+        <div class="form-group">
+            <label for="form_type">Medication Form</label>
+            <select id="form_type" name="form_type" class="form-control" required>
+                {% for form in medicine_forms %}
+                <option value="{{ form }}">{{ form|title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="dosage_schedule">Dosage Schedule</label>
+            <select id="dosage_schedule" name="dosage_schedule" class="form-control" required>
+                {% for schedule in dosage_schedules %}
+                <option value="{{ schedule }}">{{ schedule|replace('_', ' ')|title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div id="custom_value_container" class="form-group" style="display: none;">
+            <label for="custom_value">Specify Value</label>
+            <input type="number" id="custom_value" name="custom_value" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="stock">Initial Stock</label>
+            <input type="number" id="stock" name="stock" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Add Medication</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('name');
+    const dosageSchedule = document.getElementById('dosage_schedule');
+    const customValueContainer = document.getElementById('custom_value_container');
+    const descriptionField = document.getElementById('description');
+
+    // Medicine name suggestions
+    nameInput.addEventListener('input', async function() {
+        if (this.value.length >= 2) {
+            const response = await fetch(`/get_medicine_suggestions?query=${this.value}`);
+            const suggestions = await response.json();
+            
+            const datalist = document.getElementById('medicine-suggestions');
+            datalist.innerHTML = '';
+            suggestions.forEach(suggestion => {
+                const option = document.createElement('option');
+                option.value = suggestion;
+                datalist.appendChild(option);
+            });
+        }
+    });
+
+    // Show/hide custom value input based on dosage schedule
+    dosageSchedule.addEventListener('change', function() {
+        const needsCustomValue = ['every_x_hours', 'x_times_day', 'x_days_week'].includes(this.value);
+        customValueContainer.style.display = needsCustomValue ? 'block' : 'none';
+    });
+
+    // Auto-fill description when selecting existing medicine
+    nameInput.addEventListener('change', async function() {
+        const response = await fetch(`/get_medicine_details/${this.value}`);
+        const details = await response.json();
+        if (details.description) {
+            descriptionField.value = details.description;
+        }
+    });
+});
+</script>
+{% endblock %}

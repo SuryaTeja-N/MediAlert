@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}Medication Progress{% endblock %}
+
+{% block content %}
+<div class="progress-container">
+    <h1>Medication Progress</h1>
+    
+    <!-- Time period selection -->
+    <div class="period-selector">
+        <a href="{{ url_for('main.medication_progress', period='7days') }}" 
+           class="btn {% if current_period == '7days' %}btn-active{% endif %}">7 Days</a>
+        <a href="{{ url_for('main.medication_progress', period='14days') }}" 
+           class="btn {% if current_period == '14days' %}btn-active{% endif %}">14 Days</a>
+        <a href="{{ url_for('main.medication_progress', period='1month') }}" 
+           class="btn {% if current_period == '1month' %}btn-active{% endif %}">1 Month</a>
+    </div>
+
+    <div class="date-range">
+        <p>Showing progress from {{ start_date.strftime('%Y-%m-%d') }} to {{ end_date.strftime('%Y-%m-%d') }}</p>
+    </div>
+
+    {% if logs %}
+    <table class="progress-table">
+        <thead>
+            <tr>
+                <th>Medication</th>
+                <th>Status</th>
+                <th>Date & Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.medication_name }}</td>
+                <td>
+                    <span class="status-badge status-{{ log.status }}">
+                        {{ log.status.capitalize() }}
+                    </span>
+                </td>
+                <td>
+                    {% if log.taken_at is string %}
+                        {{ log.taken_at }}
+                    {% else %}
+                        {{ log.taken_at.strftime('%Y-%m-%d %H:%M') }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="no-data">No medication logs found for this period.</p>
+    {% endif %}
+</div>
+{% endblock %}

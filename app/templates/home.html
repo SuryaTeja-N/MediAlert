@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-content">
+    <h1>Welcome to MediALERT</h1>
+    <p class="tagline">Manage your medication schedules with ease and confidence.</p>
+    
+    <div class="quote-carousel">
+        <div class="quote">
+            <p>"The greatest wealth is health."</p>
+            <cite>- Virgil</cite>
+        </div>
+        <div class="quote">
+            <p>"Take care of your body. It's the only place you have to live."</p>
+            <cite>- Jim Rohn</cite>
+        </div>
+        <div class="quote">
+            <p>"He who has health has hope, and he who has hope has everything."</p>
+            <cite>- Arabian Proverb</cite>
+        </div>
+    </div>
+
+    <div class="features">
+        <h2>Why Choose MediALERT?</h2>
+        <ul>
+            <li>Easy medication tracking</li>
+            <li>Timely reminders</li>
+            <li>Stock management</li>
+            <li>Secure and private</li>
+        </ul>
+    </div>
+
+    <a href="{{ url_for('auth.register') }}" class="btn">Get Started</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Simple quote carousel
+    const quotes = document.querySelectorAll('.quote');
+    let currentQuote = 0;
+
+    function showNextQuote() {
+        quotes[currentQuote].style.display = 'none';
+        currentQuote = (currentQuote + 1) % quotes.length;
+        quotes[currentQuote].style.display = 'block';
+    }
+
+    setInterval(showNextQuote, 5000); // Change quote every 5 seconds
+</script>
+{% endblock %}

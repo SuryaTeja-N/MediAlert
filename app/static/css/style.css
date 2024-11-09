@@ -1,0 +1,309 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header a {
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+header ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+header #branding {
+    float: left;
+}
+
+header #branding h1 {
+    margin: 0;
+}
+
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header .highlight, header .current a {
+    color: #e8491d;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #cccccc;
+    font-weight: bold;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #e8491d;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #ff6a3c;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #35424a;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Add these styles at the end of your existing CSS file */
+
+.home-content {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.tagline {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.quote-carousel {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    height: 100px; /* Adjust based on your needs */
+    position: relative;
+}
+
+.quote {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.quote:first-child {
+    display: block;
+}
+
+.quote p {
+    font-style: italic;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.quote cite {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.features {
+    margin-bottom: 40px;
+}
+
+.features h2 {
+    margin-bottom: 20px;
+}
+
+.features ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.features li {
+    display: inline-block;
+    margin: 0 15px;
+    font-size: 1.1em;
+    color: #35424a;
+}
+
+.features li:before {
+    content: '✓';
+    color: #e8491d;
+    margin-right: 5px;
+}
+
+/* Updated Logo Styles */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.logo-text {
+    font-size: 2rem; /* Increased from 1.5rem */
+    font-weight: bold;
+    letter-spacing: 1px; /* Added for better readability */
+}
+
+.large-logo-text {
+    font-size: 2.5rem; /* Even larger size for the main logo text */
+}
+
+.highlight {
+    color: #e8491d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* ... (other responsive styles) ... */
+
+    .logo-text {
+        font-size: 1.8rem; /* Slightly smaller on mobile, but still larger than before */
+    }
+
+    .large-logo-text {
+        font-size: 2.2rem; /* Adjusted for mobile, but still prominent */
+    }
+}
+
+/* Medication Progress Styles */
+.progress-container {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.period-selector {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.period-selector .btn {
+    margin: 0 10px;
+    padding: 8px 16px;
+}
+
+.btn-active {
+    background: #35424a;
+}
+
+.date-range {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.progress-table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.status-taken {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-skipped {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-missed {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.no-data {
+    text-align: center;
+    color: #666;
+    padding: 20px;
+}
+
+.medication-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#custom_value_container {
+    margin-top: -1rem;
+    padding-top: 0;
+}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Medication Report{% endblock %}
+
+{% block content %}
+<h2>Medication Report</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>Stock</th>
+            <th>Next Dose</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medication in medications %}
+        <tr>
+            <td>{{ medication.name }}</td>
+            <td>{{ medication.dosage }}</td>
+            <td>{{ medication.frequency }}</td>
+            <td>{{ medication.stock }}</td>
+            <td>{{ medication.next_dose }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

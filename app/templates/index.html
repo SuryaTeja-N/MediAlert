@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h1>Welcome</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ image_path }}" alt="Welcome Image" class="img-fluid rounded">
+    </div>
+    <div class="col-md-6">
+      <p class="lead">{{ welcome_message }}</p>
+      <!-- Add more content here -->
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Log Weight{% endblock %}
+
+{% block content %}
+<h2>Log Weight</h2>
+<form method="POST">
+    <div class="form-group">
+        <label for="weight">Weight (in kg)</label>
+        <input type="number" step="0.1" id="weight" name="weight" required>
+    </div>
+    <button type="submit" class="btn">Log Weight</button>
+</form>
+{% endblock %}

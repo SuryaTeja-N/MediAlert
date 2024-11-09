@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h2>Your Medications</h2>
+<a href="{{ url_for('main.add_medication') }}" class="btn">Add Medication</a>
+<a href="{{ url_for('main.medication_progress') }}" class="btn">View Progress</a>
+<a href="{{ url_for('main.add_appointment') }}" class="btn">Add Appointment</a>
+<a href="{{ url_for('main.log_weight') }}" class="btn">Log Weight</a>
+<a href="{{ url_for('main.weight_history') }}" class="btn">Weight History</a>
+<a href="{{ url_for('main.add_profile') }}" class="btn">Add Profile</a>
+<a href="{{ url_for('main.health_tips') }}" class="btn">Health Tips</a>
+
+<h3>Profiles</h3>
+<ul>
+    {% for profile in profiles %}
+    <li>
+        {{ profile.name }} ({{ profile.relationship }})
+        <a href="{{ url_for('main.switch_profile', profile_id=profile.id) }}">Switch</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h3>Upcoming Appointments</h3>
+<ul>
+    {% for appointment in appointments %}
+    <li>
+        {{ appointment.doctor_name }} - {{ appointment.appointment_date }}
+        <p>{{ appointment.description }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Dosage</th>
+            <th>Frequency</th>
+            <th>Stock</th>
+            <th>Next Dose</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for medication in medications %}
+        <tr>
+            <td>{{ medication.name }}</td>
+            <td>{{ medication.dosage }}</td>
+            <td>{{ medication.frequency }}</td>
+            <td>{{ medication.stock }}</td>
+            <td>{{ medication.next_dose }}</td>
+            <td>
+                <a href="{{ url_for('main.edit_medication', med_id=medication.id) }}">Edit</a>
+                <a href="{{ url_for('main.delete_medication', med_id=medication.id) }}">Delete</a>
+                <a href="{{ url_for('main.log_medication', med_id=medication.id, status='taken') }}">Taken</a>
+                <a href="{{ url_for('main.log_medication', med_id=medication.id, status='skipped') }}">Skip</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function checkStock() {
+        fetch('{{ url_for("main.check_stock") }}')
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    alert('Low stock alert: ' + data.map(med => `${med.name} (${med.stock})`).join(', '));
+                }
+            });
+    }
+
+    setInterval(checkStock, 60000); // Check stock every minute
+</script>
+{% endblock %}
