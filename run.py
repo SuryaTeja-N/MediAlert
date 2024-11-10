@@ -10,5 +10,5 @@ def init_db():
         db.commit()
 
 if __name__ == '__main__':
-    init_db()  # This will recreate the database tables
+    init_db()  
     app.run(debug=True)

@@ -74,6 +74,7 @@ DROP TABLE IF EXISTS medications;
 DROP TABLE IF EXISTS symptoms;
 DROP TABLE IF EXISTS height_logs;
 DROP TABLE IF EXISTS profiles;
+DROP TABLE IF EXISTS appointments;
 
 -- Create users table
 CREATE TABLE users (
@@ -140,5 +141,15 @@ CREATE TABLE profiles (
     user_id INTEGER NOT NULL,
     name TEXT NOT NULL,
     relationship TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+-- Create appointments table
+CREATE TABLE appointments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    doctor_name TEXT NOT NULL,
+    appointment_date DATETIME NOT NULL,
+    description TEXT,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
